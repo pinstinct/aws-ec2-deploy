@@ -47,7 +47,7 @@ MEDIA_URL = '/media/'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 SECRET_KEY = config['django']['secret_key']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config['django']['allowed_hosts']
 
 # Application definition
 INSTALLED_APPS = [
