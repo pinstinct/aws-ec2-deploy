@@ -30,6 +30,9 @@ for key, key_dict in config_common.items():
     for inner_key, inner_key_dict in key_dict.items():
         config[key][inner_key] = inner_key_dict
 
+# Templates path
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 SECRET_KEY = config['django']['secret_key']
@@ -60,7 +63,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATE_DIR,
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
