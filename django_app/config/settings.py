@@ -33,6 +33,13 @@ for key, key_dict in config_common.items():
 # Templates path
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
+# Static settings
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    STATIC_DIR,
+)
+STATIC_URL = '/static/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 SECRET_KEY = config['django']['secret_key']
@@ -113,7 +120,3 @@ TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-STATIC_URL = '/static/'
