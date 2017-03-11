@@ -34,6 +34,7 @@ for key, key_dict in config_common.items():
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Static settings
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static_root')
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     STATIC_DIR,
