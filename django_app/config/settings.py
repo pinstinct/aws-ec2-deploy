@@ -33,7 +33,38 @@ for key, key_dict in config_common.items():
 # Templates path
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
+# AWS
+AWS_ACCESS_KEY_ID = config['aws']['access_key_id']
+AWS_SECRET_ACCESS_KEY = config['aws']['secret_access_key']
+AWS_STORAGE_BUCKET_NAME = config['aws']['s3_storage_bucket_name']
 
+AWS_S3_HOST = 's3.{}.amazonaws.com'.format(config['aws']['s3_region'])
+AWS_S3_SIGNATURE_VERSION = config['aws']['s3_signature_version']
+AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+
+# Static settings
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static_root')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = (
+    STATIC_DIR,
+)
+# STATIC_URL = '/static/'
+DEFAULT_FILE_STORAGE = 'config.storages.MediaStorage'
+STATICFILES_STORAGE = 'config.storages.StaticStorage'
+STATICFILES_LOCATION = 'static'
+STATIC_URL = 'https://{custom_domain}/{staticfiles_location}/'.format(
+        custom_domain=AWS_S3_CUSTOM_DOMAIN,
+        staticfiles_location=STATICFILES_LOCATION,
+    )
+MEDIAFILES_LOCATION = 'media'
+MEDIA_URL = 'https://{custom_domain}/{mediafiles_location}/'.format(
+    custom_domain=AWS_S3_CUSTOM_DOMAIN,
+    mediafiles_location=MEDIAFILES_LOCATION,
+)
+
+# Media settings
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -93,12 +124,12 @@ WSGI_APPLICATION = 'config.wsgi.application'
 AUTH_USER_MODEL = 'member.MyUser'
 DATABASES = {
     'default': {
-        'ENGINE': config['db']['engine'],
-        'NAME': config['db']['name'],
-        'USER': config['db']['user'],
-        'PASSWORD': config['db']['password'],
-        'HOST': config['db']['host'],
-        'PORT': config['db']['port'],
+        'ENGINE': config['db-rds']['engine'],
+        'NAME': config['db-rds']['name'],
+        'USER': config['db-rds']['user'],
+        'PASSWORD': config['db-rds']['password'],
+        'HOST': config['db-rds']['host'],
+        'PORT': config['db-rds']['port'],
     }
 }
 
